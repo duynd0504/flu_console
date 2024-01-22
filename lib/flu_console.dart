@@ -31,10 +31,12 @@ class FluConsole {
 
   static void run<T>(
     T Function() callback,
+      List logsAPI
   ) {
     _messages = [];
     runZonedGuarded(() {
       callback();
+      _addMessage(Message(content: logsAPI.toString(), time: DateTime.now()));
     }, (error, stackTrace) {
 
         print('start print error stackTrace');
