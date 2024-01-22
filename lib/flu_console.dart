@@ -36,7 +36,7 @@ class FluConsole {
     runZonedGuarded(() {
       callback();
     }, (error, stackTrace) {
-      if (kDebugMode) {
+
         print('start print error stackTrace');
         print(error);
         print(stackTrace);
@@ -44,13 +44,13 @@ class FluConsole {
             content: '${error.toString()}\n${stackTrace.toString()}',
             messageType: MessageType.error,
             time: DateTime.now()));
-      }
+
     }, zoneSpecification: ZoneSpecification(
         print: (Zone self, ZoneDelegate parent, Zone zone, String message) {
-      if (kDebugMode) {
+
         parent.print(zone, message);
         _addMessage(Message(content: message, time: DateTime.now()));
-      }
+
     }));
   }
 
